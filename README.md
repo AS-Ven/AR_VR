@@ -19,8 +19,9 @@ ZHAO Jérôme
 
 ## Travail réparti :
 Mathilde :
-- TTS
-- Apparitions et gestions des items
+- TTS et Dialogue
+- Apparitions, suppression des objets
+- Menus
 
 Aldric :
 - Set up de la scène
@@ -29,3 +30,4 @@ Aldric :
 
 Jérôme :
 - Debug et ajustement généraux
+- Configuration du casque et fonctionnement de la VR
