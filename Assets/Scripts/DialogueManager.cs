@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.XR;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -27,10 +27,21 @@ public class DialogueManager : MonoBehaviour
             DialogueBG.SetActive(false);
     }
 
+    private bool triggerPressedLastFrame = false;
+
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (UnityEngine.InputSystem.Keyboard.current.spaceKey.wasPressedThisFrame)
             Next();
+
+        // SecondaryIndexTrigger = gâchette droite (manette droite)
+        InputDevice rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        rightHand.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+
+        bool triggerPressed = triggerValue > 0.5f;
+        if (triggerPressed && !triggerPressedLastFrame)
+            Next();
+        triggerPressedLastFrame = triggerPressed;
     }
 
     [ContextMenu("Dialogue Suivant")]
